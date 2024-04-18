@@ -4,11 +4,6 @@ sum as a float"""
 from typing import Union, Tuple, List
 
 
-def type_checking(x: Union[int, float], y: Union[int, float]) -> float:
-    """returns the sum of x and y as a float"""
-    return x + y
-
-
 def zoom_array(lst: Tuple, factor: int = 2) -> Tuple:
     """returns a zoomed in list"""
     zoomed_in: Tuple = [
