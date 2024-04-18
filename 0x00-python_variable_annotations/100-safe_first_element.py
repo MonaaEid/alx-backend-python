@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""comment :)"""
-
+"""comment"""
 from typing import Union, Tuple, NoneType, Any, Sequence
 
 
-def safe_first_element(
-        lst: Sequence[Any]) -> Union[Any, None]:
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """returns the first element of a sequence"""
     if lst:
         return lst[0]
