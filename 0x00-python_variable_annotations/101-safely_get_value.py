@@ -13,6 +13,7 @@ def safely_get_value(dct: Dict, key: Any, default: Union[Any, None] = None) -> U
     
 
 def safely_get_value(dct, key, default = None):
+    """returns the value of the key"""
     if key in dct:
         return dct[key]
     else:

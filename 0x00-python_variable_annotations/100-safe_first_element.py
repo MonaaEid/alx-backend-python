@@ -5,7 +5,7 @@ from typing import Union, Tuple, NoneType, Any, Sequence
 
 
 def safe_first_element(
-        lst: Sequence[Any]) -> Union[Any, NoneType]:
+        lst: Sequence[Any]) -> Union[Any, Any]:
     """returns the first element of a sequence"""
     if lst:
         return lst[0]
