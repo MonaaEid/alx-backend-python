@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """type-annotated variables module"""
 a: int = 1
 pi: float = 3.14

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """type-annotated function element_length that takes a list lst as argument
 and returns a list of tuples representing each element and its length"""
 
