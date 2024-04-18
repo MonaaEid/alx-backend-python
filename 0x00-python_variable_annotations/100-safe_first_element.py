@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """comment"""
-from typing import Union, Tuple, NoneType, Any, Sequence
+from typing import Union, Any, Sequence
 
 
 def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
