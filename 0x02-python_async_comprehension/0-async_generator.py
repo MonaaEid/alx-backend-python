@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" """
+"""comment """
 import asyncio
 from typing import Generator
 import random
