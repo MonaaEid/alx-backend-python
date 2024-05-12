@@ -9,10 +9,22 @@ from utils import get_user_data, get_user_followers_data, get_user_following_dat
 
 class TestUtils(unittest.TestCase):
     @parameterized.expand([
+        ("get_user", "https://api.github.com/users/"),
+        ("get_user_followers", "https://api.github.com/users/"),
+        ("get_user_following", "https://api.github.com/users/")
+    ])
+    @patch('utils.requests.get')
+    def test_get_user(self, mock_get, test_name, url):
+        get_user(url)
+        mock_get.assert_called_once_with(url)
+
+    @patch('utils.requests.get')
+    @parameterized.expand([
         ("get_user_data", "https://api.github.com/users/"),
         ("get_user_followers_data", "https://api.github.com/users/"),
         ("get_user_following_data", "https://api.github.com/users/")
     ])
+    
     @patch('utils.requests.get')
     def test_get_user_data(self, mock_get, test_name, url):
         get_user_data(url)
