@@ -45,7 +45,8 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google", {'name': 'repo_1'}),
         ("abc", {'name': 'repo_2'}),
     ])
-    @patch('client.GithubOrgClient._public_repos_url', new_callable=PropertyMock)
+    @patch('client.GithubOrgClient._public_repos_url',
+           new_callable=PropertyMock)
     @patch('client.get_json')
     def test_public_repos(
             self,
@@ -64,7 +65,8 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google", {'name': 'repo_1'}),
         ("abc", {'name': 'repo_2'}),
     ])
-    @patch('client.GithubOrgClient._public_repos_url', new_callable=PropertyMock)
+    @patch('client.GithubOrgClient._public_repos_url',
+           new_callable=PropertyMock)
     @patch('client.get_json')
     def test_public_repos_with_license(
             self,
@@ -102,7 +104,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @patch('client.get_json')
     def test_public_repos_with_license_exception(self, mock_get_json: Mock):
-        """Test GithubOrgClient.public_repos method with license and exception"""
+        """Test GithubOrgClient.public_repos method
+        with license and exception"""
         org_name = 'google'
         goc = GithubOrgClient(org_name)
         goc.org = {'repos_url': 'http://repos.url'}
