@@ -21,8 +21,8 @@ class TestAccessNestedMap(unittest.TestCase):
 
     def test_access_nested_map_exception(self):
         """Test access_nested_map function with exception"""
-        with self.assertRaises(exception):
-            access_nested_map(nested_map, path)
+        with self.assertRaises(KeyError):
+            access_nested_map({'a': 1}, ('a', 'b'))
 
 
 class TestGetJson(unittest.TestCase):
@@ -39,32 +39,22 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """Test memoize decorator"""
-
-    def test_memoize(self):
-        """Test memoize function"""
+    """Tests the `memoize` function."""
+    def test_memoize(self) -> None:
+        """Tests `memoize`'s output."""
         class TestClass:
-            """Test class"""
-
             def a_method(self):
-                """A method"""
                 return 42
 
             @memoize
-            def a_method_memoized(self):
-                """A method"""
-                return 42
-
-        with patch.object(TestClass, 'a_method',
-                          return_value=42) as mock_method:
-            tc = TestClass()
-            self.assertEqual(tc.a_method(), 42)
-            self.assertEqual(tc.a_method(), 42)
-            mock_method.assert_called_once()
-
-        with patch.object(TestClass, 'a_method_memoized',
-                          return_value=42) as mock_method:
-            tc = TestClass()
-            self.assertEqual(tc.a_method_memoized(), 42)
-            self.assertEqual(tc.a_method_memoized(), 42)
-            mock_method.assert_called_once()
+            def a_property(self):
+                return self.a_method()
+        with patch.object(
+                TestClass,
+                "a_method",
+                return_value=lambda: 42,
+                ) as memo_fxn:
+            test_class = TestClass()
+            self.assertEqual(test_class.a_property(), 42)
+            self.assertEqual(test_class.a_property(), 42)
+            memo_fxn.assert_called_once()
