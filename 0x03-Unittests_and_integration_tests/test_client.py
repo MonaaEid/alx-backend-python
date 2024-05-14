@@ -87,16 +87,15 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_public_repos_with_license(
             self,
             org_name: str,
+            repo_name: Dict,
             mock_get_json: Mock,
-            mock_public_repos_url: Mock,
-            license="apache-2.0"):
+            mock_public_repos_url: Mock):
         """Test GithubOrgClient.public_repos method with license"""
-        mock_get_json.return_value = [{'license': {'key': license}}]
+        mock_get_json.return_value = [repo_name]
         goc = GithubOrgClient(org_name)
-        self.assertEqual(goc.public_repos(True), [{'license': {'key': license}}])
+        self.assertEqual(goc.public_repos(True), [repo_name])
         mock_get_json.assert_called_once()
         mock_public_repos_url.assert_called_once()
-
 
     @patch('client.get_json')
     def test_public_repos_url_exception(self, mock_get_json: Mock):
