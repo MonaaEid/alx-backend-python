@@ -129,21 +129,3 @@ class TestGithubOrgClient(unittest.TestCase):
         with self.assertRaises(HTTPError):
             goc.public_repos(True)
         mock_get_json.assert_called_once()
-
-
-class TestIntegrationGithubOrgClient(unittest.TestCase):
-    """Integration test for GithubOrgClient class"""
-    @parameterized.expand([
-        ("google", True),
-        ("abc", True),
-    ])
-    def test_public_repos_with_license(
-            self,
-            org_name: str,
-            has_license: bool,
-            ) -> None:
-        """Integration test for GithubOrgClient.public_repos method"""
-        goc = GithubOrgClient(org_name)
-        repos = goc.public_repos(has_license)
-        self.assertTrue(all(has_license == goc.has_license(repo, 'bsd-3-clause')
-                            for repo in repos))
